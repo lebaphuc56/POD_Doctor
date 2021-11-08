@@ -14,10 +14,17 @@ import CalculateBMIDetail from './screens/people/CalcutaleDetail';
 import Location from './screens/people/Location';
 import EmergencyContact from './screens/people/EmergencyContact';
 import HomeActivity from './screens/user/HomeActivity';
-import BottonTab from './navigation/BottonTab'
+import Tab from './navigation/Tab';
+import DetailDoctorUric from './screens/detailScreen/DetailDoctorUric';
+
+
+
+
+
 
 
 const Stack = createNativeStackNavigator();
+
 const App =()=>{
  return(
     <NavigationContainer>
@@ -33,7 +40,9 @@ const App =()=>{
     <Stack.Screen name ="Location" component={Location}  />
     <Stack.Screen name ="EmergencyContact" component={EmergencyContact}  />
     <Stack.Screen name ="HomeActivity" component={HomeActivity}  />
-    <Stack.Screen name ="BottonTab" component={BottonTab}  />
+    <Stack.Screen name ="Tab" component={Tab}  />
+    <Stack.Screen name ="DetailDoctorUric" component={DetailDoctorUric}  />
+    
 
 
    </Stack.Navigator>

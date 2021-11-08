@@ -82,7 +82,7 @@ const OptScreen = ({ navigation }: { navigation: any }) => {
             </View>
             <Text style={styles.textEnter}>You can resend OTP after{<Text style={{ color: Colors.red }}> 1:30s</Text>} </Text>
             <TouchableOpacity
-                onPress={() => navigation.navigate('HomeActivity')}
+                onPress={() => navigation.navigate('Tab')}
                 style={styles.btnLuu}>
                 <Text style={styles.textLogin}>Verify number</Text>
             </TouchableOpacity>

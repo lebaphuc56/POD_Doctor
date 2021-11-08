@@ -19,7 +19,7 @@ const HomeActivity = ({ navigation }: { navigation: any }) => {
             <ToolBarHome>
                 <View style={styles.HeadContainer} >
                     <TouchableOpacity
-                        onPress={() => navigation.goBack()}
+                       
                     >
                         <Image style={{ marginLeft: 16, width: 60, height: 32 }} source={require('../../images/logo.png')} />
                     </TouchableOpacity>
@@ -30,7 +30,7 @@ const HomeActivity = ({ navigation }: { navigation: any }) => {
                 </View>
             </ToolBarHome>
             <ScrollView
-            showsVerticalScrollIndicator={false}
+                showsVerticalScrollIndicator={false}
             >
                 <View style={{ alignItems: 'center', padding: 12 }}>
 
@@ -56,8 +56,7 @@ const HomeActivity = ({ navigation }: { navigation: any }) => {
                                     fontFamily: 'HelveticaNeue ',
                                     width: 175,
                                     height: 72
-                                }}>Welcome to your Personal Online Docket. Refresh to see your Wellness
-                                    Index Summary. </Text>
+                                }}>Please add your health devices. </Text>
                             </View>
 
                             <View>
@@ -70,24 +69,28 @@ const HomeActivity = ({ navigation }: { navigation: any }) => {
                 </View>
 
                 <View style={{ alignItems: 'center' }}>
-                    <Card style={styles.cardDoctor}>
-                        <View style={{ flexDirection: 'row', justifyContent: 'space-between', padding: 8, alignItems: 'center' }}>
-                            <Image style={{}} source={require('../../images/Iconic.png')} />
-                            <Text style={{
-                                color: '#091F3A',
-                                fontSize: 14,
-                                fontStyle: 'normal',
-                                fontWeight: 'normal',
-                                lineHeight: 24,
-                                letterSpacing: 0.005
+                    <TouchableOpacity
+                        onPress={() => navigation.navigate('DetailDoctorUric')}
+                    >
+                        <Card style={styles.cardDoctor}>
+                            <View style={{ flexDirection: 'row', justifyContent: 'space-between', padding: 8, alignItems: 'center' }}>
+                                <Image style={{}} source={require('../../images/Iconic.png')} />
+                                <Text style={{
+                                    color: '#091F3A',
+                                    fontSize: 14,
+                                    fontStyle: 'normal',
+                                    fontWeight: 'normal',
+                                    lineHeight: 24,
+                                    letterSpacing: 0.005
 
-                            }}>Easy Doctor Uric Acid</Text>
-                            <Image style={{}} source={require('../../images/fi_plus.png')} />
-                        </View>
-                    </Card>
+                                }}>Easy Doctor Uric Acid</Text>
+                                <Image style={{}} source={require('../../images/fi_plus.png')} />
+                            </View>
+                        </Card>
+                    </TouchableOpacity>
                 </View>
 
-                <View style={{ alignItems: 'center',marginTop:16 }}>
+                <View style={{ alignItems: 'center', marginTop: 16 }}>
                     <Card style={styles.cardDoctor}>
                         <View style={{ flexDirection: 'row', justifyContent: 'space-between', padding: 8, alignItems: 'center' }}>
                             <Image style={{}} source={require('../../images/heart.png')} />
@@ -105,8 +108,8 @@ const HomeActivity = ({ navigation }: { navigation: any }) => {
                     </Card>
                 </View>
 
-                
-                <View style={{ alignItems: 'center',marginTop:16 }}>
+
+                <View style={{ alignItems: 'center', marginTop: 16 }}>
                     <Card style={styles.cardDoctor}>
                         <View style={{ flexDirection: 'row', justifyContent: 'space-between', padding: 8, alignItems: 'center' }}>
                             <Image style={{}} source={require('../../images/water.png')} />
@@ -124,7 +127,7 @@ const HomeActivity = ({ navigation }: { navigation: any }) => {
                     </Card>
                 </View>
 
-                <View style={{ alignItems: 'center',marginTop:16 }}>
+                <View style={{ alignItems: 'center', marginTop: 16 }}>
                     <Card style={styles.cardDoctor}>
                         <View style={{ flexDirection: 'row', justifyContent: 'space-between', padding: 8, alignItems: 'center' }}>
                             <Image style={{}} source={require('../../images/vacine.png')} />
@@ -142,7 +145,7 @@ const HomeActivity = ({ navigation }: { navigation: any }) => {
                     </Card>
                 </View>
 
-                <View style={{ alignItems: 'center',marginTop:16 }}>
+                <View style={{ alignItems: 'center', marginTop: 16 }}>
                     <Card style={styles.cardDoctor}>
                         <View style={{ flexDirection: 'row', justifyContent: 'space-between', padding: 8, alignItems: 'center' }}>
                             <Image style={{}} source={require('../../images/cholestrol.png')} />
@@ -160,7 +163,7 @@ const HomeActivity = ({ navigation }: { navigation: any }) => {
                     </Card>
                 </View>
 
-                <View style={{ alignItems: 'center',marginTop:16 }}>
+                <View style={{ alignItems: 'center', marginTop: 16 }}>
                     <Card style={styles.cardDoctor}>
                         <View style={{ flexDirection: 'row', justifyContent: 'space-between', padding: 8, alignItems: 'center' }}>
                             <Image style={{}} source={require('../../images/vital.png')} />
@@ -178,7 +181,7 @@ const HomeActivity = ({ navigation }: { navigation: any }) => {
                     </Card>
                 </View>
 
-                <View style={{ alignItems: 'center',marginTop:16 }}>
+                <View style={{ alignItems: 'center', marginTop: 16 }}>
                     <Card style={styles.cardDoctor}>
                         <View style={{ flexDirection: 'row', justifyContent: 'space-between', padding: 8, alignItems: 'center' }}>
                             <Image style={{}} source={require('../../images/spo2.png')} />
@@ -284,10 +287,11 @@ const styles = StyleSheet.create({
     },
     cardHome: {
         width: 360,
-        height: 136,
+        height: 100,
         borderWidth: 1,
         borderRadius: 16,
         backgroundColor: '#6CB6DD',
+
     },
     cardDoctor: {
         width: 360,
@@ -295,6 +299,9 @@ const styles = StyleSheet.create({
         display: 'flex',
         alignContent: 'center',
         borderRadius: 12,
+        backgroundColor: '#FAFBFC',
+
+
 
 
     }
