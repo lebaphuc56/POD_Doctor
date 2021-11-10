@@ -16,8 +16,9 @@ import EmergencyContact from './screens/people/EmergencyContact';
 import HomeActivity from './screens/user/HomeActivity';
 import Tab from './navigation/Tab';
 import DetailDoctorUric from './screens/detailScreen/DetailDoctorUric';
-
-
+import AddFriend from './screens/user/AddFriends';
+import SearchFriend from './screens/user/SearchFriend';
+import DoctorDetail from './screens/people/DoctorDetail';
 
 
 
@@ -42,8 +43,9 @@ const App =()=>{
     <Stack.Screen name ="HomeActivity" component={HomeActivity}  />
     <Stack.Screen name ="Tab" component={Tab}  />
     <Stack.Screen name ="DetailDoctorUric" component={DetailDoctorUric}  />
-    
-
+    <Stack.Screen name ="AddFriend" component={AddFriend}  />
+    <Stack.Screen name ="SearchFriend" component={SearchFriend}  />
+    <Stack.Screen name ="DoctorDetail" component={DoctorDetail}  />
 
    </Stack.Navigator>
   

@@ -18,9 +18,9 @@ import * as Animatable from 'react-native-animatable'
 
 const TabArr = [
   { route: 'Home', label: 'Home', type: Icons.Feather, icon: 'home-heart', component: HomeActivity, color: Colors.primey, },
-  { route: 'Doctor', label: 'Doctor', type: Icons.Feather, icon: 'file-document', component: SurveyActivity, color: Colors.green, },
-  { route: 'Notification', label: 'Notification', type: Icons.Feather, icon: 'clock', component: ClockActivity, color: Colors.red, },
-  { route: 'Profile', label: 'Profile', type: Icons.FontAwesome, icon: 'cart', component: CartActivity, color: Colors.black, },
+  { route: 'Doctor', label: 'Doctor', type: Icons.Feather, icon: 'doctor', component: SurveyActivity, color: Colors.green, },
+  { route: 'Notification', label: 'Notification', type: Icons.Feather, icon: 'bell', component: ClockActivity, color: Colors.red, },
+  { route: 'Profile', label: 'Profile', type: Icons.FontAwesome, icon: 'doctor', component: CartActivity, color: Colors.black, },
 ];
 // const Tab = createMaterialBottomTabNavigator();
 const Tab = createBottomTabNavigator();
@@ -98,7 +98,7 @@ const tab = () => {
               tabBarLabel: item.label,
 
               tabBarIcon: ({ color, focused }) => (
-                <MaterialCommunityIcons name={item.icon} size={24} color={color} />),
+                <MaterialCommunityIcons name={item.icon} size={12} color={color} />),
               tabBarButton: (props) => <TabButton {...props} item={item} />
 
             }} />

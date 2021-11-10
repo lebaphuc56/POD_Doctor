@@ -30,6 +30,7 @@
     "react-native-splash-screen": "^3.2.0",
     "react-native-svg": "^12.1.1",
     "react-native-vector-icons": "^9.0.0",
+    "switch-button-react-native": "^1.0.3",
     "victory-native": "^36.2.0"
   },
   "devDependencies": {

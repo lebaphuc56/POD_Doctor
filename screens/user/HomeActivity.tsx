@@ -24,7 +24,9 @@ const HomeActivity = ({ navigation }: { navigation: any }) => {
                         <Image style={{ marginLeft: 16, width: 60, height: 32 }} source={require('../../images/logo.png')} />
                     </TouchableOpacity>
 
-                    <TouchableOpacity >
+                    <TouchableOpacity
+                    onPress={() =>navigation.navigate('AddFriend')}
+                    >
                         <Image style={{ marginRight: 16, }} source={require('../../images/user.png')} />
                     </TouchableOpacity>
                 </View>
@@ -300,10 +302,6 @@ const styles = StyleSheet.create({
         alignContent: 'center',
         borderRadius: 12,
         backgroundColor: '#FAFBFC',
-
-
-
-
     }
 });
 export default HomeActivity;
