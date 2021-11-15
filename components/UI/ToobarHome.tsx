@@ -9,12 +9,12 @@ const styles = StyleSheet.create({
     toolbar: {
       
         backgroundColor: '#FAFBFC',  
-        height:96,
+        height:70,
         flexDirection:"row",
         borderBottomColor: Colors.blue,
         borderBottomWidth:1,
         alignItems:'center',
-        paddingTop:40, 
+       
         
     }
 })

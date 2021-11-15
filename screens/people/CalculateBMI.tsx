@@ -159,7 +159,6 @@ const styles = StyleSheet.create({
         width: '100%',
         flexDirection: 'row',
         height: 100,
-        marginTop: 30,
         justifyContent: 'space-between',
         alignItems: 'center',
     },

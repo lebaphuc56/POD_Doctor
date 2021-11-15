@@ -1,23 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, } from "react";
 import { ImageBackground, StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
 import InputText from "../../components/UI/InputText";
 import CheckBox from '@react-native-community/checkbox';
 import Colors from "../../constants/Colors";
 
-const Login = ({ navigation }: { navigation: any }) => {
+import { useNavigation } from '@react-navigation/native';
 
-
+const Login = () => {
+    
+    const navigation = useNavigation(); 
     const [toggleCheckBox, setToggleCheckBox] = useState(false)
     return (
         <View style={styles.container}>
 
             <ImageBackground source={require('../../images/backgroundImage.png')} resizeMode="cover" style={styles.image}>
-                <View >
-                    <Image
-                        style={styles.imageLogo}
-
-                        source={require('../../images/logo.png')} />
-                </View>
+                
                 <View style={styles.vieText}>
                     <Text style={styles.text}>Welcome!</Text>
                     <Text style={styles.textInform}>Create an account so you can see
@@ -36,7 +33,7 @@ const Login = ({ navigation }: { navigation: any }) => {
                 <View style={{ flexDirection: 'row', alignSelf: 'center',padding:12 }}>
 
                     <TouchableOpacity
-                    onPress={() => navigation.navigate('AgeGender')}
+                    onPress={() => navigation.navigate('OptScreen')}
                     style={styles.btnLuu}>
                         <Text style={styles.textLogin}>Sign In</Text>
                     </TouchableOpacity>
@@ -61,7 +58,7 @@ const Login = ({ navigation }: { navigation: any }) => {
                        
                     }}>Don’t have an account?</Text>
                     <TouchableOpacity
-                    onPress={() => navigation.push('Register')}
+                    onPress={() => navigation.navigate('Register')}
                     >
                     <Text style={{
                         fontFamily: 'HelveticaNeue',
@@ -155,3 +152,6 @@ const styles = StyleSheet.create({
 });
 
 export default Login;
+
+
+

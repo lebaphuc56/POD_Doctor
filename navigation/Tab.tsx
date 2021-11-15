@@ -59,20 +59,20 @@ const TabButton = (props: any) => {
         style={{
           flexDirection: 'row',
           backgroundColor: focused ? Colors.white : Colors.blue,
-          width: 100,
+          width: 90,
           height: 40,
           alignItems: 'center',
-          borderRadius: 16,
-          padding: 8
+          borderRadius: 8,
+          
         }}>
-        <MaterialCommunityIcons name={item.icon} size={24} color={focused ? Colors.blue : Colors.white} />
+        <MaterialCommunityIcons name={item.icon} size={22} color={focused ? Colors.blue : Colors.white} />
         <Animatable.View
           ref={textviewref}>
           <Text
             style={{
               fontSize: 12,
-              color: focused ? Colors.blue : Colors.blue,
-              paddingHorizontal: 8
+              color: focused ? Colors.blue : Colors.white,
+              paddingHorizontal: 4
 
             }}>{item.label}</Text>
         </Animatable.View>
@@ -98,7 +98,7 @@ const tab = () => {
               tabBarLabel: item.label,
 
               tabBarIcon: ({ color, focused }) => (
-                <MaterialCommunityIcons name={item.icon} size={12} color={color} />),
+                <MaterialCommunityIcons name={item.icon} size={24} color={color} />),
               tabBarButton: (props) => <TabButton {...props} item={item} />
 
             }} />

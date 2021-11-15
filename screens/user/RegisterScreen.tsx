@@ -45,7 +45,7 @@ const Register = ({ navigation }: { navigation: any }) => {
                 <View style={{ flexDirection: 'row', alignSelf: 'center' }}>
 
                     <TouchableOpacity 
-                    onPress={()=>navigation.navigate('Login')}
+                    onPress={()=>navigation.navigate('AgeGender')}
                     style={styles.btnLuu}>
                     
                         <Text style={styles.textLogin}>Sign Up</Text>

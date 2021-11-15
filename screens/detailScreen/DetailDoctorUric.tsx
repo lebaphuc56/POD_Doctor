@@ -81,6 +81,7 @@ const DetailDoctorUric = ({ navigation }: { navigation: any }) => {
 
                     </Card>
                 </View>
+
                 <View style={{ alignItems: 'center', }}>
                     <Card style={styles.cardDoctor}>
                         <View style={{ flexDirection: 'row', padding: 8, alignItems: 'center' }}>
@@ -240,6 +241,7 @@ const DetailDoctorUric = ({ navigation }: { navigation: any }) => {
                         </View>
                     </Card>
                 </View>
+                
                 <View style={{ alignItems: 'center', marginTop: 16, marginBottom: 16 }}>
                     <Card style={styles.cardDoctor}>
                         <View style={{ flexDirection: 'row', padding: 8, alignItems: 'center' }}>

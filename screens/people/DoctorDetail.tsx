@@ -233,7 +233,6 @@ const styles = StyleSheet.create({
         width: '100%',
         flexDirection: 'row',
         height: 100,
-        marginTop: 30,
         justifyContent: 'space-between',
         alignItems: 'center',
 
@@ -259,6 +258,14 @@ const styles = StyleSheet.create({
         width: 328,
 
     },
+    textLogin: {
+        color: Colors.white,
+        fontFamily: 'HelveticaNeue',
+        fontSize: 16,
+        fontStyle: 'normal',
+        fontWeight: 'bold',
+        lineHeight: 24
+    },
     btnLuu2: {
         backgroundColor: Colors.white,
         height: 48,
@@ -271,14 +278,7 @@ const styles = StyleSheet.create({
 
 
     },
-    textLogin: {
-        color: Colors.white,
-        fontFamily: 'HelveticaNeue',
-        fontSize: 16,
-        fontStyle: 'normal',
-        fontWeight: 'bold',
-        lineHeight: 24
-    },
+  
     textLogin2: {
         color: Colors.blue,
         fontFamily: 'HelveticaNeue',
@@ -289,7 +289,7 @@ const styles = StyleSheet.create({
     },
 
     separator: {
-        width: 200,
+        width: 250,
         borderBottomColor: Colors.blue,
         borderBottomWidth: StyleSheet.hairlineWidth,
         borderWidth: 1,

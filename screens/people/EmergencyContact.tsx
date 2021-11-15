@@ -175,7 +175,7 @@ const styles = StyleSheet.create({
         width: '100%',
         flexDirection: 'row',
         height: 100,
-        marginTop: 30,
+       
         justifyContent: 'space-between',
         alignItems: 'center',
     },
@@ -251,7 +251,6 @@ const styles = StyleSheet.create({
         fontSize: 18,
         padding: 0,
         paddingHorizontal: 18,
-
         fontWeight: 'bold',
         color: Colors.blue,
         opacity: 0.4,

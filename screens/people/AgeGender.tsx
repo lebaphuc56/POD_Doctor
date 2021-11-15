@@ -2,16 +2,12 @@ import React, { useRef, useState } from "react";
 import { ImageBackground, StyleSheet, Text, View, Image, TouchableOpacity, StatusBar, TextInput } from "react-native";
 import { Card } from "react-native-paper";
 import SelectDropdown from 'react-native-select-dropdown';
-
-
-
 import Colors from "../../constants/Colors";
-
 const AgeGender = ({ navigation }: { navigation: any }) => {
 
     const gender = ['Male', 'Female'];
     const age = ['18-24','19','20','21','22','23','24','25','26','27','28','29','30','32','40', ];
-
+   
     return (
         <View style={styles.container}>
 
@@ -19,12 +15,7 @@ const AgeGender = ({ navigation }: { navigation: any }) => {
 
                 <Image style={{ width: 70, height: 36, marginTop: 60, marginBottom: 30 }} source={require('../../images/logo.png')} />
 
-
             </View>
-
-
-
-
             <View style={{ alignItems: 'center', justifyContent: 'center', padding: 12 }}>
                 <Image source={require('../../images/age.png')} />
             </View>
@@ -55,11 +46,8 @@ const AgeGender = ({ navigation }: { navigation: any }) => {
                             
                             style={styles.otpText}
                             keyboardType="number-pad"
-                            maxLength={2}
-                            
-                            
+                            maxLength={2}                                      
                         />
-                           
                             <Text style={{
                                 color:'#091F3A',
                                 fontSize:16,
@@ -75,7 +63,6 @@ const AgeGender = ({ navigation }: { navigation: any }) => {
                     </View>
                 </Card>
             </View>
-
             <View style={{ alignItems: 'center', justifyContent: 'center', marginTop: 24 }}>
                 <Card style={styles.cardGender}>
                     <Text style={{
@@ -107,30 +94,17 @@ const AgeGender = ({ navigation }: { navigation: any }) => {
                                     return item;
                                 }}
                             />
-
-
-
                         </View>
                     </View>
                 </Card>
             </View>
-
             <View style={{ flexDirection: 'row', alignSelf: 'center', marginTop:24}}>
-
                 <TouchableOpacity
                     onPress={() => navigation.navigate('HealthPeople')}
                     style={styles.btnLuu}>
                     <Text style={styles.textLogin}>Done</Text>
                 </TouchableOpacity>
             </View>
-
-
-
-
-
-
-
-
         </View>
     )
 }
@@ -219,9 +193,9 @@ const styles = StyleSheet.create({
         paddingVertical: 10,
         fontWeight:'bold',
         color: Colors.blue,
-        opacity:0.8
-        
+        opacity:0.8,
+      
     },
-
+    
 });
 export default AgeGender;
