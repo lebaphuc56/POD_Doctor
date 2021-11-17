@@ -152,9 +152,9 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         display: 'flex',
         borderRadius: 16,
-        borderWidth: 1,
-        shadowColor: 'red',
         marginTop:12,
+        elevation:16,
+        backgroundColor:'#ffffff'
 
     },
     cardGender: {

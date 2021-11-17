@@ -16,7 +16,7 @@ const Login = () => {
             <ImageBackground source={require('../../images/backgroundImage.png')} resizeMode="cover" style={styles.image}>
                 
                 <View style={styles.vieText}>
-                    <Text style={styles.text}>Welcome!</Text>
+                    <Text style={styles.text}>Hi there!</Text>
                     <Text style={styles.textInform}>Create an account so you can see
                     </Text>
                     <Text style={styles.textInform}>valuable information about your body.</Text>
@@ -87,7 +87,7 @@ const styles = StyleSheet.create({
         fontSize: 36,
         fontFamily: 'HelveticaNeue Bold',
         lineHeight: 36,
-        color: '#181818'
+        color: '#091F3A'
 
 
     },
@@ -114,7 +114,8 @@ const styles = StyleSheet.create({
         color: '#091F3A',
     },
     vieText: {
-        padding: 22
+        padding: 22,
+        marginTop:60
     },
     textComment: {
         fontSize: 20,

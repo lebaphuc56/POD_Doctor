@@ -74,11 +74,10 @@ const CartActivity = ({ navigation }: { navigation: any }) => {
                                         backgroundColor: "#000",
                                     },
                                     container: {
-
-
                                         backgroundColor: '#fff',
                                         borderTopLeftRadius: 16,
                                         borderTopRightRadius: 16,
+                                        
 
                                     }
                                 }}
@@ -132,7 +131,7 @@ const CartActivity = ({ navigation }: { navigation: any }) => {
                             <Avatar
                                 rounded
                                 size={120}
-                                source={require('../../images/ken.png')}
+                                source={require('../../images/boy.png')}
                             />
 
                             <Image style={{ position: 'absolute', marginLeft: 80, marginTop: 80 }} source={require('../../images/u_camera.png')} />
@@ -148,7 +147,7 @@ const CartActivity = ({ navigation }: { navigation: any }) => {
                         lineHeight: 24,
                         padding: 12,
                         opacity: 0.8
-                    }}>Dr. Chen Kook Ken </Text>
+                    }}>John Doe </Text>
                 </View>
                 <View style={{
                     alignItems: 'center',
@@ -363,13 +362,14 @@ const CartActivity = ({ navigation }: { navigation: any }) => {
                 <View style={{ flexDirection: 'column', alignSelf: 'center', marginTop: 20 }}>
 
                     <TouchableOpacity
-                        onPress={() => navigation.navigate('SearchFriend')}
+                        onPress={() => navigation.push('UpdateContact')}
                         style={styles.btnLuu2}>
                         <View style={{ flexDirection: 'row' }}>
 
                             <Text style={styles.textLogin2}>Update contact</Text>
                         </View>
                     </TouchableOpacity>
+                    
                     <TouchableOpacity
                         onPress={() => navigation.navigate('SearchFriend')}
                         style={styles.btnLuu}>
@@ -386,8 +386,8 @@ const CartActivity = ({ navigation }: { navigation: any }) => {
                         height: 88,
                         borderRadius: 8,
                         marginTop: 24,
-                        borderColor: Colors.blue,
-                        borderWidth: 0.5,
+                        elevation:8,
+                        backgroundColor:'#ffffff',
                         marginBottom: 62
                     }}>
                         <View style={{ padding: 12 }}>
@@ -445,11 +445,12 @@ const styles = StyleSheet.create({
         width: 327,
         height: 71,
         borderRadius: 12,
-        borderWidth: 0.5,
         alignItems: 'center',
         justifyContent: 'center',
-        marginTop: 16
-
+        marginTop: 16,
+        elevation:8,
+        backgroundColor:'#ffffff',
+        
     },
     cardInformation: {
         width: 327,
@@ -457,6 +458,8 @@ const styles = StyleSheet.create({
         borderRadius: 12,
         borderWidth: 0.5,
         marginTop: 16,
+        elevation:8,
+        backgroundColor:'#ffffff'
 
     },
     cardResults: {
@@ -465,6 +468,8 @@ const styles = StyleSheet.create({
         borderRadius: 12,
         borderWidth: 0.5,
         marginTop: 16,
+        elevation:8,
+        backgroundColor:'#ffffff'
 
     },
     item: {

@@ -77,7 +77,8 @@ const CalculateBMI = ({ navigation }: { navigation: any }) => {
                                 opacity: 0.8,
                                 fontStyle: 'normal',
                                 fontWeight: 'bold',
-                                marginRight: 40
+                                
+                                
 
                             }}>Kg</Text>
                         </View>
@@ -120,7 +121,7 @@ const CalculateBMI = ({ navigation }: { navigation: any }) => {
                                 opacity: 0.8,
                                 fontStyle: 'normal',
                                 fontWeight: 'bold',
-                                marginRight: 40
+                                
 
                             }}>Cm</Text>
                         </View>
@@ -168,8 +169,9 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         display: 'flex',
         borderRadius: 16,
-        borderWidth: 1,
-        shadowColor: 'red',
+        elevation:8,
+        backgroundColor:'#ffffff',
+        
 
     },
     cardGender: {
@@ -178,8 +180,8 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         display: 'flex',
         borderRadius: 16,
-        borderWidth: 1,
-        shadowColor: 'red',
+        elevation:8,
+        backgroundColor:'#ffffff'
     },
 
     btnLuu: {
@@ -226,7 +228,9 @@ const styles = StyleSheet.create({
         paddingVertical: 10,
         fontWeight: 'bold',
         color: Colors.blue,
-        opacity: 0.8
+        opacity: 0.8,
+        borderBottomColor:Colors.blue,
+        borderBottomWidth:1
 
     },
 

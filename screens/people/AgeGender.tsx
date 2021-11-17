@@ -21,7 +21,7 @@ const AgeGender = ({ navigation }: { navigation: any }) => {
             </View>
 
 
-            <View style={{ alignItems: 'center', justifyContent: 'center' }}>
+            <View style={{ alignItems: 'center', justifyContent: 'center' ,elevation:8}}>
                 <Card style={styles.cardAge}>
                     <Text style={{
                         textAlign: 'center',
@@ -56,13 +56,15 @@ const AgeGender = ({ navigation }: { navigation: any }) => {
                                 opacity:0.8,
                                 fontStyle: 'normal',
                                 fontWeight: 'bold',
-                                marginRight:40
+                                marginRight:40,
+                                
                         
                         }}>years old</Text>
                         </View>
                     </View>
                 </Card>
             </View>
+
             <View style={{ alignItems: 'center', justifyContent: 'center', marginTop: 24 }}>
                 <Card style={styles.cardGender}>
                     <Text style={{
@@ -82,7 +84,7 @@ const AgeGender = ({ navigation }: { navigation: any }) => {
                                 buttonStyle={styles.drop}
                                 rowStyle={styles.row}
                                 buttonTextStyle={styles.rowText}
-                                rowTextStyle={styles.rowText}
+                                rowTextStyle={styles.rowText2}
                                 data={gender}
                                 onSelect={(selectedItem: any, index: any) => {
                                     console.log(selectedItem, index);
@@ -135,8 +137,8 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         display: 'flex',
         borderRadius: 16,
-        borderWidth: 1,
-        shadowColor: 'red',
+        elevation:8,
+        backgroundColor:'#ffffff'
 
     },
     cardGender: {
@@ -145,8 +147,8 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         display: 'flex',
         borderRadius: 16,
-        borderWidth: 1,
-        shadowColor: 'red',
+        elevation:8,
+        backgroundColor:'#ffffff'
     },
 
     btnLuu: {
@@ -176,14 +178,28 @@ const styles = StyleSheet.create({
     },
     rowText: {
         textAlign: "center",
-        fontSize: 30,
+        fontSize: 18,
         fontWeight: 'bold',
         fontStyle: "normal",
         color: '#6CB6DD',
-        lineHeight: 36,
-        letterSpacing: 0.005
+        lineHeight: 24,
+        letterSpacing: 0.005,
+        borderBottomColor:Colors.blue,
+        borderBottomWidth:1
 
     },
+    rowText2: {
+        textAlign: "center",
+        fontSize: 24,
+        fontWeight: 'bold',
+        fontStyle: "normal",
+        color: '#6CB6DD',
+        lineHeight: 24,
+        letterSpacing: 0.005,
+       
+
+    },
+    
     otpText: {
         width: 100,
         textAlign: 'center',
@@ -194,6 +210,8 @@ const styles = StyleSheet.create({
         fontWeight:'bold',
         color: Colors.blue,
         opacity:0.8,
+        borderBottomColor:Colors.blue,
+        borderBottomWidth:1
       
     },
     

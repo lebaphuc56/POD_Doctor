@@ -143,8 +143,8 @@ const DoctorDetail = ({ navigation }: { navigation: any }) => {
                         height: 90,
                         alignItems: 'center',
                         borderRadius: 12,
-                        borderWidth: 0.5,
-                        borderColor: Colors.blue
+                        elevation: 8,
+                        backgroundColor: '#ffffff'
 
                     }}>
                         <View style={{ flexDirection: 'column' }}>
@@ -161,8 +161,8 @@ const DoctorDetail = ({ navigation }: { navigation: any }) => {
                         height: 200,
                         alignItems: 'center',
                         borderRadius: 12,
-                        borderWidth: 0.5,
-                        borderColor: Colors.blue
+                        elevation: 8,
+                        backgroundColor: '#ffffff'
 
                     }}>
                         <View style={{ flexDirection: 'column', padding: 12 }}>
@@ -190,8 +190,8 @@ const DoctorDetail = ({ navigation }: { navigation: any }) => {
                         height: 120,
                         alignItems: 'center',
                         borderRadius: 12,
-                        borderWidth: 0.5,
-                        borderColor: Colors.blue
+                        elevation: 8,
+                        backgroundColor: '#ffffff'
 
                     }}>
                         <View style={{ flexDirection: 'column' }}>
@@ -243,10 +243,10 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         display: 'flex',
         borderRadius: 16,
-        borderWidth: 1,
-        shadowColor: 'red',
         marginTop: 12,
-        padding: 8
+        padding: 8,
+        elevation: 8,
+        backgroundColor: '#ffffff'
 
     },
     btnLuu: {
@@ -278,7 +278,7 @@ const styles = StyleSheet.create({
 
 
     },
-  
+
     textLogin2: {
         color: Colors.blue,
         fontFamily: 'HelveticaNeue',

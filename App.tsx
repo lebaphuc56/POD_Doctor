@@ -2,7 +2,11 @@
 import React from 'react';
 import 'react-native-gesture-handler';
 import { NavigationContainer } from '@react-navigation/native';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {
+   createStackNavigator,
+   TransitionPresets,
+
+} from '@react-navigation/stack';
 import Splash from './screens/user/SplashScreen';
 import Login from './screens/user/LoginScreen';
 import OptScreen from './screens/user/OtpScreen';
@@ -19,39 +23,39 @@ import DetailDoctorUric from './screens/detailScreen/DetailDoctorUric';
 import AddFriend from './screens/user/AddFriends';
 import SearchFriend from './screens/user/SearchFriend';
 import DoctorDetail from './screens/people/DoctorDetail';
+import UpdateContact from './screens/user/UpdateContact';
 
 
+const Stack = createStackNavigator();
 
+const App = () => {
+   return (
+      <NavigationContainer>
+         <Stack.Navigator initialRouteName="Splash"
+            screenOptions={{ headerShown: false }}>
 
+            <Stack.Screen name="Splash" component={Splash} />
+            <Stack.Screen name="Login" component={Login} />
+            <Stack.Screen name="Register" component={Register} />
+            <Stack.Screen name="OptScreen" component={OptScreen} options={{ ...TransitionPresets.SlideFromRightIOS }} />
+            <Stack.Screen name="AgeGender" component={AgeGender} />
+            <Stack.Screen name="HealthPeople" component={HealthPeople} options={{ ...TransitionPresets.SlideFromRightIOS }} />
+            <Stack.Screen name="CalculateBMI" component={CalculateBMI} options={{ ...TransitionPresets.SlideFromRightIOS }} />
+            <Stack.Screen name="CalculateBMIDetail" component={CalculateBMIDetail} options={{ ...TransitionPresets.SlideFromRightIOS }} />
+            <Stack.Screen name="Location" component={Location} options={{ ...TransitionPresets.SlideFromRightIOS }} />
+            <Stack.Screen name="EmergencyContact" component={EmergencyContact} options={{ ...TransitionPresets.SlideFromRightIOS }} />
+            <Stack.Screen name="HomeActivity" component={HomeActivity} options={{ ...TransitionPresets.SlideFromRightIOS }} />
+            <Stack.Screen name="Tab" component={Tab} options={{ ...TransitionPresets.SlideFromRightIOS }} />
+            <Stack.Screen name="DetailDoctorUric" component={DetailDoctorUric} />
+            <Stack.Screen name="AddFriend" component={AddFriend} />
+            <Stack.Screen name="SearchFriend" component={SearchFriend}  options={{...TransitionPresets.SlideFromRightIOS}}/>
+            <Stack.Screen name="DoctorDetail" component={DoctorDetail} options={{ ...TransitionPresets.SlideFromRightIOS }} />
+            <Stack.Screen name="UpdateContact" component={UpdateContact} options={{ ...TransitionPresets.SlideFromRightIOS }} />
+         </Stack.Navigator>
 
-const Stack = createNativeStackNavigator();
+      </NavigationContainer>
 
-const App =()=>{
- return(
-    <NavigationContainer>
-    <Stack.Navigator initialRouteName="Splash" screenOptions={{headerShown: false}}>
-    <Stack.Screen name ="Splash" component={Splash}  />
-    <Stack.Screen name ="Login" component={Login}  />
-    <Stack.Screen name ="Register" component={Register}  />
-    <Stack.Screen name ="OptScreen" component={OptScreen}  />
-    <Stack.Screen name ="AgeGender" component={AgeGender}  />
-    <Stack.Screen name ="HealthPeople" component={HealthPeople}  />
-    <Stack.Screen name ="CalculateBMI" component={CalculateBMI}  />
-    <Stack.Screen name ="CalculateBMIDetail" component={CalculateBMIDetail}  />
-    <Stack.Screen name ="Location" component={Location}  />
-    <Stack.Screen name ="EmergencyContact" component={EmergencyContact}  />
-    <Stack.Screen name ="HomeActivity" component={HomeActivity}  />
-    <Stack.Screen name ="Tab" component={Tab}  />
-    <Stack.Screen name ="DetailDoctorUric" component={DetailDoctorUric}  />
-    <Stack.Screen name ="AddFriend" component={AddFriend}  />
-    <Stack.Screen name ="SearchFriend" component={SearchFriend}  />
-    <Stack.Screen name ="DoctorDetail" component={DoctorDetail}  />
-
-   </Stack.Navigator>
-  
-  </NavigationContainer>
-
- )
+   )
 }
 export default App;
 

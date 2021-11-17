@@ -132,9 +132,10 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         display: 'flex',
         borderRadius: 16,
-        borderWidth: 1,
-        shadowColor: 'blue',
+        elevation:16,
+        backgroundColor:'#ffffff',
         marginTop: 12,
+        shadowColor:'#8DC6E4'
 
     },
 

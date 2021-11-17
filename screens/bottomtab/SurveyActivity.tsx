@@ -253,10 +253,12 @@ const styles = StyleSheet.create({
         width: 327,
         height: 128,
         borderColor: Colors.blue,
-        borderWidth: 0.5,
+        
         borderRadius: 12,
         padding: 18,
-        marginTop: 16
+        marginTop: 16,
+        elevation:8,
+        backgroundColor:'#ffffff'
 
 
     }

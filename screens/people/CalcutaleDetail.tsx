@@ -136,8 +136,8 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         display: 'flex',
         borderRadius: 16,
-        borderWidth: 1,
-        shadowColor: 'red',
+        elevation:8,
+        backgroundColor:'#ffffff'
     
 
     },
@@ -147,8 +147,8 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         display: 'flex',
         borderRadius: 16,
-        borderWidth: 1,
-        shadowColor: 'red',
+        elevation:8,
+        backgroundColor:'#ffffff'
     },
 
     btnLuu: {

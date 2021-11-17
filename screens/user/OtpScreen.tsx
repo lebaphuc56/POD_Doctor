@@ -36,6 +36,7 @@ const OptScreen = ({ navigation }: { navigation: any }) => {
                 <Text style={styles.textEnter}>Enter the OTP sent to {<Text style={{ color: Colors.blue }}> +84325623356</Text>}</Text>
 
             </View>
+        
             <View style={styles.otpContainer}>
                 <View style={styles.otpBox}>
                     <TextInput
@@ -135,7 +136,10 @@ const styles = StyleSheet.create({
         justifyContent: 'space-evenly',
         alignItems: 'center',
         flexDirection: 'row',
-        marginTop: 12
+        marginTop: 12,
+       
+        
+       
     },
     otpText: {
         width: 64,

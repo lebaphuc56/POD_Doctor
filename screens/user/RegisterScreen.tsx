@@ -127,7 +127,8 @@ const styles = StyleSheet.create({
         color: '#091F3A',
     },
     vieText: {
-        padding: 22
+        padding: 22,
+        marginTop:40
     },
     textComment: {
         fontSize: 20,

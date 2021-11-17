@@ -55,7 +55,7 @@ const HealthPeople = ({ navigation }: { navigation: any }) => {
                                 buttonStyle={styles.drop}
                                 rowStyle={styles.row}
                                 buttonTextStyle={styles.rowText}
-                                rowTextStyle={styles.rowText}
+                                rowTextStyle={styles.rowText2}
                                 data={blood}
                                 onSelect={(selectedItem: any, index: any) => {
                                     console.log(selectedItem, index);
@@ -93,7 +93,7 @@ const HealthPeople = ({ navigation }: { navigation: any }) => {
                                 buttonStyle={styles.drop}
                                 rowStyle={styles.row}
                                 buttonTextStyle={styles.rowText}
-                                rowTextStyle={styles.rowText}
+                                rowTextStyle={styles.rowText2}
                                 data={allergic}
                                 onSelect={(selectedItem: any, index: any) => {
                                     console.log(selectedItem, index);
@@ -131,7 +131,7 @@ const HealthPeople = ({ navigation }: { navigation: any }) => {
                                 buttonStyle={styles.drop}
                                 rowStyle={styles.row}
                                 buttonTextStyle={styles.rowText}
-                                rowTextStyle={styles.rowText}
+                                rowTextStyle={styles.rowText2}
                                 data={illness}
                                 onSelect={(selectedItem: any, index: any) => {
                                     console.log(selectedItem, index);
@@ -191,9 +191,8 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         display: 'flex',
         borderRadius: 16,
-        borderWidth: 1,
-        shadowColor: 'red',
-
+        elevation:8,
+        backgroundColor:'#ffffff'
     },
     cardGender: {
         width: 328,
@@ -201,8 +200,8 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         display: 'flex',
         borderRadius: 16,
-        borderWidth: 1,
-        shadowColor: 'red',
+        elevation:8,
+        backgroundColor:'#ffffff'
     },
 
     btnLuu: {
@@ -231,6 +230,18 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
     },
     rowText: {
+        textAlign: "center",
+        fontSize: 18,
+        fontWeight: 'bold',
+        fontStyle: "normal",
+        color: '#6CB6DD',
+        lineHeight: 36,
+        letterSpacing: 0.005,
+        borderBottomColor:Colors.blue,
+        borderBottomWidth:1
+
+    },
+    rowText2: {
         textAlign: "center",
         fontSize: 30,
         fontWeight: 'bold',

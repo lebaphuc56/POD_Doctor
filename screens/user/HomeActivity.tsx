@@ -5,30 +5,28 @@ import {
     View,
     Image,
     TouchableOpacity,
-    ScrollView
-
+    ScrollView,
+    Dimensions
 } from "react-native";
 import { Card } from "react-native-paper";
 import ToolBarHome from "../../components/UI/ToobarHome";
 import Colors from "../../constants/Colors";
-import { VictoryBar, VictoryChart, VictoryLine, VictoryTheme } from "victory-native";
+import { BarChart, LineChart } from "react-native-gifted-charts";
 import { ButtonGroup } from "react-native-elements";
+import { datammHg, barData,lineData,lineData2,lineData3 } from "../../data/datammHg";
 const HomeActivity = ({ navigation }: { navigation: any }) => {
 
+    const screenWidth = Dimensions.get("window").width;
     const [inputShown, setInputShown] = useState<boolean>(false);
     const [inputShown2, setInputShown2] = useState<boolean>(false);
-    const data = [
-        { quarter: 5, earnings: 10 },
-        { quarter: 6, earnings: 20 },
-        { quarter: 7, earnings: 30 },
-        { quarter: 8, earnings: 40 },
-        { quarter: 9, earnings: 50 },
-        { quarter: 10, earnings: 90, },
 
-    ];
     const [selectedIndexECG, setSelectedIndexECG] = useState(0);
     const [selectedIndexCholestrol, setSelectedIndexCholestrol] = useState(0);
     const [selectedIndexVital, setSelectedIndexVital] = useState(0);
+
+   
+
+
     return (
         <View style={styles.container}>
             <ToolBarHome>
@@ -85,7 +83,7 @@ const HomeActivity = ({ navigation }: { navigation: any }) => {
                     </Card>
                 </View>
 
-                <View style={{ display: inputShown == false ? 'flex' : 'none', alignItems: 'center' }}>
+                <View style={{ display: inputShown == false ? 'flex' : 'none', alignItems: 'center', }}>
 
                     <Card style={styles.cardDoctor}>
                         <View style={{ flexDirection: 'row', justifyContent: 'space-between', padding: 8, alignItems: 'center' }}>
@@ -150,28 +148,19 @@ const HomeActivity = ({ navigation }: { navigation: any }) => {
                                     <Text style={{ marginTop: 20 }}>Low</Text>
                                 </View>
 
-                                <View style={{ alignItems: 'center', justifyContent: 'center', }}>
-                                    <VictoryChart
-                                        width={300}
-                                        height={200}
-                                        domainPadding={{ x: 5 }}
-
-                                        theme={VictoryTheme.material}>
-                                        <VictoryBar
-
-                                            style={{
-
-                                                data: {
-                                                    fill: ({ datum }) => datum.x === 10 ? "#000000" : "#6CB6DD",
-
-
-                                                },
-
-
-                                            }}
-                                            labels={({ datum }) => datum.x}
-                                            data={data} x="quarter" y="earnings" />
-                                    </VictoryChart>
+                                <View style={{ alignItems: 'center', justifyContent: 'center', padding: 12 }}>
+                                    <BarChart
+                                        width={260}
+                                        height={150}
+                                        barWidth={8}
+                                        noOfSections={3}
+                                        barBorderRadius={4}
+                                        frontColor="lightgray"
+                                        data={barData}
+                                        yAxisThickness={0}
+                                        xAxisThickness={0}
+                                      
+                                    />
 
                                 </View>
                             </View>
@@ -203,7 +192,7 @@ const HomeActivity = ({ navigation }: { navigation: any }) => {
 
                 </View>
 
-                <View style={{ alignItems: 'center', marginTop: 16 }}>
+                <View style={{ alignItems: 'center', padding:8 }}>
 
                     <Card style={styles.cardDoctor}>
                         <View style={{ flexDirection: 'row', justifyContent: 'space-between', padding: 8, alignItems: 'center' }}>
@@ -224,7 +213,7 @@ const HomeActivity = ({ navigation }: { navigation: any }) => {
                     </Card>
 
                 </View>
-                <View style={{ alignItems: 'center', marginTop: 16 }}>
+                <View style={{ alignItems: 'center', padding:8 }}>
 
                     <Card style={styles.cardDoctor}>
                         <View style={{ flexDirection: 'row', justifyContent: 'space-between', padding: 8, alignItems: 'center' }}>
@@ -245,7 +234,7 @@ const HomeActivity = ({ navigation }: { navigation: any }) => {
                     </Card>
 
                 </View>
-                <View style={{ alignItems: 'center', marginTop: 16 }}>
+                <View style={{ alignItems: 'center',padding:8 }}>
 
                     <Card style={styles.cardDoctor}>
                         <View style={{ flexDirection: 'row', justifyContent: 'space-between', padding: 8, alignItems: 'center' }}>
@@ -266,14 +255,15 @@ const HomeActivity = ({ navigation }: { navigation: any }) => {
                     </Card>
 
                 </View>
-                <View style={{ display: inputShown2 == false ? 'flex' : 'none', alignItems: 'center' }}>
+
+                <View style={{ display: inputShown2 == false ? 'flex' : 'none', alignItems: 'center' ,padding:8}}>
 
                     <Card style={styles.cardDoctor}>
                         <View style={{ flexDirection: 'row', justifyContent: 'space-between', padding: 8, alignItems: 'center' }}>
 
-                            
-                                <Image style={{}} source={require('../../images/vital.png')} />
-                           
+
+                            <Image style={{}} source={require('../../images/vital.png')} />
+
 
                             <Text style={{
                                 color: '#091F3A',
@@ -299,10 +289,10 @@ const HomeActivity = ({ navigation }: { navigation: any }) => {
                 </View>
 
                 <View
-                style={{ display: inputShown2 == true ? 'flex' : 'none' }}
+                    style={{ display: inputShown2 == true ? 'flex' : 'none' }}
                 >
 
-                    <View style={{ alignItems: 'center', marginTop: 16, marginBottom: 16 }}>
+                    <View style={{ alignItems: 'center', marginTop: 16,  }}>
                         <Card style={styles.cardDoctorDetail}>
                             <View style={{ flexDirection: 'row', padding: 8, alignItems: 'center' }}>
                                 <TouchableOpacity
@@ -335,59 +325,70 @@ const HomeActivity = ({ navigation }: { navigation: any }) => {
 
 
                             <View style={{ alignItems: 'center', justifyContent: 'center', }}>
-                                <VictoryChart
-                                    width={300}
-                                    height={200}
-
-                                    theme={VictoryTheme.material}>
-                                    <VictoryLine
-                                        style={{
-                                            data: { stroke: "#c43a31" },
-                                            parent: { border: "1px solid #ccc" }
-                                        }}
-                                        data={[
-                                            { x: 1, y: 2 },
-                                            { x: 2, y: 3 },
-                                            { x: 3, y: 5 },
-                                            { x: 4, y: 4 },
-                                            { x: 5, y: 7 }
-                                        ]}
-                                    />
-                                    <VictoryLine
-                                        style={{
-                                            data: { stroke: "#181818" },
-                                            parent: { border: "1px solid #ccc" }
-                                        }}
-                                        data={[
-                                            { x: 1, y: 2 },
-                                            { x: 4, y: 5 },
-                                            { x: 3, y: 5 },
-                                            { x: 6, y: 8 },
-                                            { x: 5, y: 6 }
-                                        ]}
-                                    />
-                                    <VictoryLine
-                                        style={{
-                                            data: { stroke: "#188" },
-                                            parent: { border: "1px solid #ccc" }
-                                        }}
-                                        data={[
-                                            { x: 1, y: 2 },
-                                            { x: 3, y: 7 },
-                                            { x: 4, y: 6 },
-                                            { x: 7, y: 9 },
-                                            { x: 5, y: 6 }
-                                        ]}
-                                    />
-                                </VictoryChart>
+                                <LineChart
+                                    data={lineData}
+                                    data2={lineData2}
+                                    data3={lineData3}
+                                    width={100}
+                                    height={180}
+                                    showVerticalLines
+                                    spacing={44}
+                                    initialSpacing={0}
+                                    color1="skyblue"
+                                    color2="orange"
+                                    color3="black"
+                                    textColor1="green"
+                                    dataPointsColor1="blue"
+                                    dataPointsColor2="red"
+                                    dataPointsColor3="black"
+                                    textFontSize={3}
+                                    noOfSections={3}
+                                    maxValue={200}
+                                    
+                                   
+                                />
 
                             </View>
+                            <View style={{ flexDirection: 'row', justifyContent: 'space-between' ,padding: 8}}>
 
-                            <Text style={{ padding: 8 }}>05-11/01/2021 • 3:32 PM</Text>
+                                <Text style={{
+                                    color: '#333333',
+                                    fontSize: 14,
+                                    fontStyle: 'normal',
+                                    fontWeight: 'bold',
+                                    lineHeight: 18,
+                                    letterSpacing: 0.005,
+                                    padding: 8,
+                                    fontFamily: 'Helvetica Neue'
+
+                                }}>DIA</Text>
+                                <Text style={{
+                                    color: '#333333',
+                                    fontSize: 14,
+                                    fontStyle: 'normal',
+                                    fontWeight: 'bold',
+                                    lineHeight: 18,
+                                    letterSpacing: 0.005,
+                                    padding: 8,
+                                    fontFamily: 'Helvetica Neue'
+
+                                }}>SYS</Text>
+                                <Text style={{
+                                    color: '#333333',
+                                    fontSize: 14,
+                                    fontStyle: 'normal',
+                                    fontWeight: 'bold',
+                                    lineHeight: 18,
+                                    letterSpacing: 0.005,
+                                    padding: 8,
+                                    fontFamily: 'Helvetica Neue'
+
+                                }}>DIA</Text>
+                            </View>
                         </Card>
                     </View>
                 </View>
-                <View style={{ alignItems: 'center', marginTop: 16 }}>
+                <View style={{ alignItems: 'center', padding:8}}>
 
                     <Card style={styles.cardDoctor}>
                         <View style={{ flexDirection: 'row', justifyContent: 'space-between', padding: 8, alignItems: 'center' }}>
@@ -410,6 +411,8 @@ const HomeActivity = ({ navigation }: { navigation: any }) => {
                     </Card>
 
                 </View>
+
+
 
             </ScrollView>
         </View>
@@ -510,16 +513,19 @@ const styles = StyleSheet.create({
         height: 60,
         alignContent: 'center',
         borderRadius: 12,
-        backgroundColor: '#FAFBFC',
-        borderWidth: 0.5
+        
+        elevation:8,
+        backgroundColor:'#ffffff'
     },
     cardDoctorDetail: {
-        width: 337,
-        height: 340,
+        width: 350,
+        height: 350,
         alignContent: 'center',
         borderRadius: 12,
-        backgroundColor: '#FFFF',
-        borderWidth: 1
+        elevation:16,
+        display: 'flex',
+        shadowColor:'#8DC6E4'
+        
 
     },
 });

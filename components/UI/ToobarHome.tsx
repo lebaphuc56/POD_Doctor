@@ -7,15 +7,15 @@ const ToolBarHome = props => {
 
 const styles = StyleSheet.create({
     toolbar: {
-      
-        backgroundColor: '#FAFBFC',  
-        height:70,
-        flexDirection:"row",
-        borderBottomColor: Colors.blue,
-        borderBottomWidth:1,
-        alignItems:'center',
-       
-        
+
+        backgroundColor: '#FAFBFC',
+        height: 96,
+        flexDirection: "row",
+        elevation: 8,
+        alignItems: 'center',
+
+
+
     }
 })
 

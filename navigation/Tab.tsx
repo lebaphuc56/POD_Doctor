@@ -1,9 +1,7 @@
 import 'react-native-gesture-handler';
 import React, { useEffect, useRef } from 'react';
 import { Image, StyleSheet, View, Text, TouchableOpacity, Animated } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
-
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
+import { createBottomTabNavigator, } from '@react-navigation/bottom-tabs'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Icons from '../constants/Icons'
 import Colors from '../constants/Colors'
@@ -14,7 +12,11 @@ import ClockActivity from '../screens/bottomtab/ClockActivity';
 import SurveyActivity from '../screens/bottomtab/SurveyActivity'
 import CartActivity from '../screens/bottomtab/CartActivity'
 import * as Animatable from 'react-native-animatable'
+import {
+  createStackNavigator,
+  TransitionPresets,
 
+} from '@react-navigation/stack';
 
 const TabArr = [
   { route: 'Home', label: 'Home', type: Icons.Feather, icon: 'home-heart', component: HomeActivity, color: Colors.primey, },
@@ -22,8 +24,9 @@ const TabArr = [
   { route: 'Notification', label: 'Notification', type: Icons.Feather, icon: 'bell', component: ClockActivity, color: Colors.red, },
   { route: 'Profile', label: 'Profile', type: Icons.FontAwesome, icon: 'doctor', component: CartActivity, color: Colors.black, },
 ];
-// const Tab = createMaterialBottomTabNavigator();
+
 const Tab = createBottomTabNavigator();
+
 const TabButton = (props: any) => {
   const { item, onPress, accessibilityState } = props;
   const focused = accessibilityState.selected;
@@ -63,7 +66,7 @@ const TabButton = (props: any) => {
           height: 40,
           alignItems: 'center',
           borderRadius: 8,
-          
+
         }}>
         <MaterialCommunityIcons name={item.icon} size={22} color={focused ? Colors.blue : Colors.white} />
         <Animatable.View
@@ -82,6 +85,7 @@ const TabButton = (props: any) => {
   )
 }
 const tab = () => {
+  const Tab2 = createStackNavigator();
   return (
     <Tab.Navigator
       screenOptions={{
@@ -96,6 +100,7 @@ const tab = () => {
           <Tab.Screen name={item.route} component={item.component}
             options={{
               tabBarLabel: item.label,
+              ...TransitionPresets.SlideFromRightIOS,
 
               tabBarIcon: ({ color, focused }) => (
                 <MaterialCommunityIcons name={item.icon} size={24} color={color} />),
