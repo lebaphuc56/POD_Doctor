@@ -2,8 +2,8 @@ import React, { useRef, useState } from "react";
 import { ImageBackground, StyleSheet, Text, View, Image, TouchableOpacity, StatusBar, TextInput } from "react-native";
 import { Card } from "react-native-paper";
 import SelectDropdown from 'react-native-select-dropdown';
-
-
+import database, { FirebaseDatabaseTypes } from '@react-native-firebase/database';
+import { idUser } from '../../api/apiService';
 
 import Colors from "../../constants/Colors";
 
@@ -12,7 +12,25 @@ const CalculateBMIDetail = ({ navigation }: { navigation: any }) => {
     const blood = ['A', 'B', 'AB', 'O'];
     const allergic = ['Peanut', 'B',];
     const illness = ['Yes', 'No',];
+    const [users, setUsers] = React.useState([]);
+    const { uid: id_User } = idUser();
+    React.useEffect(() => {
+        var dataContainer = []
 
+        const userRef = database().ref(`users`);
+        const OnLoadingListener = userRef.on('value', snapshot => {
+
+            if (snapshot.val()) {
+                setUsers(Object.values(snapshot.val())?.filter((v) => v.uid === id_User));
+            }
+
+        });
+        return () => {
+            userRef.off('value', OnLoadingListener);
+            setUsers([]);
+        };
+
+    }, [])
 
     return (
         <View style={styles.container}>
@@ -67,7 +85,7 @@ const CalculateBMIDetail = ({ navigation }: { navigation: any }) => {
                         textAlign: 'center',
                         padding: 8
 
-                    }}>18.3</Text>
+                    }}>{Math.round(users[0]?.healthCare?.wight / (users[0]?.healthCare?.height / 100 * 2))}</Text>
 
                     <Text style={{
                         textAlign: 'center',

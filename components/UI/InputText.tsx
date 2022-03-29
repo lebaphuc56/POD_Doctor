@@ -1,7 +1,7 @@
 import React, {FC, useState} from 'react';
-import {StyleSheet, View, TextInput, Text} from 'react-native';
+import {StyleSheet, View, TextInput, Text,TextInputProps} from 'react-native';
 
-interface Props {
+interface Props extends TextInputProps{
   
   placeholder: any;
  
@@ -14,7 +14,7 @@ const Input: FC<Props> = props => {
         <TextInput
           style={{...styles.input
           }}
-          
+          {...props}
           placeholder={props.placeholder}
          
           ></TextInput>
@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
     paddingRight: 10,
   },
   input: {
-    marginTop: 15,
+    marginTop: 10,
     backgroundColor: '#EFF3F6',
     alignSelf: 'center',
     height: 44,
@@ -37,7 +37,8 @@ const styles = StyleSheet.create({
     paddingLeft: 10,
     fontSize:16,
     fontStyle:'normal',
-    fontWeight:'500'
+    fontWeight:'500',
+    borderRadius:8
   },
   errorInput:{
     borderWidth:1,

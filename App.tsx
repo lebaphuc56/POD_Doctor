@@ -24,6 +24,9 @@ import AddFriend from './screens/user/AddFriends';
 import SearchFriend from './screens/user/SearchFriend';
 import DoctorDetail from './screens/people/DoctorDetail';
 import UpdateContact from './screens/user/UpdateContact';
+import SPO2 from './screens/user/SPO2';
+import Test from './screens/user/TestFirebase';
+import SurveyActivity from './screens/bottomtab/SurveyActivity';
 
 
 const Stack = createStackNavigator();
@@ -35,6 +38,7 @@ const App = () => {
             screenOptions={{ headerShown: false }}>
 
             <Stack.Screen name="Splash" component={Splash} />
+            <Stack.Screen name="SPO2" component={SPO2} />
             <Stack.Screen name="Login" component={Login} />
             <Stack.Screen name="Register" component={Register} />
             <Stack.Screen name="OptScreen" component={OptScreen} options={{ ...TransitionPresets.SlideFromRightIOS }} />
@@ -51,6 +55,9 @@ const App = () => {
             <Stack.Screen name="SearchFriend" component={SearchFriend}  options={{...TransitionPresets.SlideFromRightIOS}}/>
             <Stack.Screen name="DoctorDetail" component={DoctorDetail} options={{ ...TransitionPresets.SlideFromRightIOS }} />
             <Stack.Screen name="UpdateContact" component={UpdateContact} options={{ ...TransitionPresets.SlideFromRightIOS }} />
+            <Stack.Screen name="Test" component={Test} />
+            <Stack.Screen name="SurveyActivity" component={SurveyActivity} />
+            
          </Stack.Navigator>
 
       </NavigationContainer>

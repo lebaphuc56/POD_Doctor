@@ -40,9 +40,10 @@ const SplashScreen = ({navigation}: {navigation: any}) => {
         Animated.parallel([
           Animated.timing(startAnimation, {
             // For same Height for non safe Area Devices...
-            toValue: -Dimensions.get('window').height + edges.top,
+            toValue: -Dimensions.get('window').height ,
             useNativeDriver: true,
           }),
+
           Animated.timing(scaleLogo, {
             // Scaling to 0.35
             toValue: 0.5,
@@ -58,22 +59,22 @@ const SplashScreen = ({navigation}: {navigation: any}) => {
             toValue: {
               x: 0,
               // Since image size is 100...
-              y: Dimensions.get('window').height / 1.63,
+              y: Dimensions.get('window').height / 1.65,
             },
             useNativeDriver: true,
           }),
-          // Animated.timing(
-          //     moveTitle,
-          //     {
-          //         // Moving to Right Most...
-          //         toValue: {
-          //             x: 0,
-          //             // Since image size is 100...
-          //             y: (Dimensions.get('window').height / 2) - 90
-          //         },
-          //         useNativeDriver: true
-          //     }
-          // ),
+          Animated.timing(
+              moveTitle,
+              {
+                  // Moving to Right Most...
+                  toValue: {
+                      x: 0,
+                      // Since image size is 100...
+                      y: (Dimensions.get('window').height / 2) - 90
+                  },
+                  useNativeDriver: true
+              }
+          ),
           Animated.timing(contentTransition, {
             toValue: 0,
             useNativeDriver: true,

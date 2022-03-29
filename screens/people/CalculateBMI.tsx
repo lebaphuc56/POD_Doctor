@@ -1,9 +1,9 @@
 import React, { useRef, useState } from "react";
-import { ImageBackground, StyleSheet, Text, View, Image, TouchableOpacity, StatusBar, TextInput } from "react-native";
+import { ImageBackground, StyleSheet, Text, View, Image, TouchableOpacity, StatusBar, TextInput, ActivityIndicator } from "react-native";
 import { Card } from "react-native-paper";
 import SelectDropdown from 'react-native-select-dropdown';
 
-
+import { healthCare, idUser } from "../../api/apiService";
 
 import Colors from "../../constants/Colors";
 
@@ -12,7 +12,26 @@ const CalculateBMI = ({ navigation }: { navigation: any }) => {
     const blood = ['A', 'B', 'AB', 'O'];
     const allergic = ['Peanut', 'B',];
     const illness = ['Yes', 'No',];
+    const { uid } = idUser();
 
+    const [Id, setId] = React.useState();
+    const [wight, setWight] = React.useState('');
+    const [height, setHeight] = React.useState('');
+    const [isLoading, setIsLoading] = useState(false);
+    const saveUsers = () => {
+        setIsLoading(true);
+        healthCare(Id, wight, height, uid)
+            .then(result => {
+                setIsLoading(false);
+                navigation.navigate('CalculateBMIDetail');
+
+
+            })
+            .catch((error) => {
+                setIsLoading(false);
+                console.log(error)
+            })
+    }
 
     return (
         <View style={styles.container}>
@@ -65,6 +84,12 @@ const CalculateBMI = ({ navigation }: { navigation: any }) => {
                                 style={styles.otpText}
                                 keyboardType="number-pad"
                                 maxLength={3}
+                                value={wight}
+                                onChangeText={(text) => {
+                                    setWight(text)
+                                }
+
+                                }
 
 
                             />
@@ -77,8 +102,8 @@ const CalculateBMI = ({ navigation }: { navigation: any }) => {
                                 opacity: 0.8,
                                 fontStyle: 'normal',
                                 fontWeight: 'bold',
-                                
-                                
+
+
 
                             }}>Kg</Text>
                         </View>
@@ -109,6 +134,12 @@ const CalculateBMI = ({ navigation }: { navigation: any }) => {
                                 style={styles.otpText}
                                 keyboardType="number-pad"
                                 maxLength={3}
+                                value={height}
+                                onChangeText={(text) => {
+                                    setHeight(text)
+                                }
+
+                                }
 
 
                             />
@@ -121,7 +152,7 @@ const CalculateBMI = ({ navigation }: { navigation: any }) => {
                                 opacity: 0.8,
                                 fontStyle: 'normal',
                                 fontWeight: 'bold',
-                                
+
 
                             }}>Cm</Text>
                         </View>
@@ -131,13 +162,17 @@ const CalculateBMI = ({ navigation }: { navigation: any }) => {
                 </Card>
             </View>
             <View style={{ flexDirection: 'row', alignSelf: 'center', marginTop: 24 }}>
-
                 <TouchableOpacity
-                    onPress={() => navigation.navigate('CalculateBMIDetail')}
+                    disabled={isLoading}
                     style={styles.btnLuu}>
-                    <Text style={styles.textLogin}>Calculate</Text>
+                    {isLoading && (
+                        <ActivityIndicator size="small" color="#fff" />
+
+                    )}
+                    <Text onPress={saveUsers} style={styles.textLogin}>Save</Text>
                 </TouchableOpacity>
             </View>
+
 
 
         </View>
@@ -169,9 +204,9 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         display: 'flex',
         borderRadius: 16,
-        elevation:8,
-        backgroundColor:'#ffffff',
-        
+        elevation: 8,
+        backgroundColor: '#ffffff',
+
 
     },
     cardGender: {
@@ -180,8 +215,8 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         display: 'flex',
         borderRadius: 16,
-        elevation:8,
-        backgroundColor:'#ffffff'
+        elevation: 8,
+        backgroundColor: '#ffffff'
     },
 
     btnLuu: {
@@ -191,6 +226,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         width: 328,
+        flexDirection: 'row'
 
     },
     textLogin: {
@@ -199,7 +235,8 @@ const styles = StyleSheet.create({
         fontSize: 16,
         fontStyle: 'normal',
         fontWeight: 'bold',
-        lineHeight: 24
+        lineHeight: 24,
+        marginLeft: 10
     },
     drop: {
         backgroundColor: '#fff',
@@ -229,9 +266,29 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         color: Colors.blue,
         opacity: 0.8,
-        borderBottomColor:Colors.blue,
-        borderBottomWidth:1
+        borderBottomColor: Colors.blue,
+        borderBottomWidth: 1
 
+    },
+    btnLuu2: {
+        backgroundColor: Colors.white,
+        height: 48,
+        borderRadius: 32,
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: 328,
+        borderColor: Colors.blue,
+        borderWidth: 1,
+
+
+    },
+    textLogin2: {
+        color: Colors.blue,
+        fontFamily: 'HelveticaNeue',
+        fontSize: 16,
+        fontStyle: 'normal',
+        fontWeight: 'bold',
+        lineHeight: 24
     },
 
 });

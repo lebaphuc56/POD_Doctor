@@ -1,13 +1,30 @@
 import React, { useState } from "react";
-import { ImageBackground, StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
+import { ImageBackground, StyleSheet, Text, View, Image, TouchableOpacity,ToastAndroid } from "react-native";
 import InputText from "../../components/UI/InputText";
 import CheckBox from '@react-native-community/checkbox';
 import Colors from "../../constants/Colors";
-
+import auth from '@react-native-firebase/auth';
+import database from '@react-native-firebase/database';
 const Register = ({ navigation }: { navigation: any }) => {
 
+type formParams = {
+    name:string,
+    phone:string,
+    email:string,
+    password:string,
+    
 
-    const [toggleCheckBox, setToggleCheckBox] = useState(false)
+}
+    const [toggleCheckBox, setToggleCheckBox] = useState(false);
+    const [form,setForm] = useState<formParams>({
+    name:'',
+    phone:'',
+    email:'',
+    password:'',
+    
+    })
+ 
+  
     return (
         <View style={styles.container}>
 
@@ -27,10 +44,18 @@ const Register = ({ navigation }: { navigation: any }) => {
 
                 <View style={{ flexDirection: 'column' }}>
 
-                    <InputText placeholder="Name" />
-                    <InputText placeholder="Phone" />
-                    <InputText placeholder="Email" />
-                    <InputText placeholder="Password" />
+                    <InputText placeholder="Name" onChangeText={(text:string)=>{
+                        setForm({...form,name:text})
+                    }}  />
+                    <InputText placeholder="Phone" onChangeText={(text:string)=>{
+                        setForm({...form,phone:text})
+                    }} />
+                    <InputText placeholder="Email" onChangeText={(text:string)=>{
+                        setForm({...form,email:text})
+                    }} />
+                    <InputText placeholder="Password" onChangeText={(text:string)=>{
+                        setForm({...form,password:text})
+                    }}/>
                 </View>
                 <View style={{ flexDirection: 'row', justifyContent: 'center', padding: 12 }}>
                     <CheckBox
@@ -45,7 +70,43 @@ const Register = ({ navigation }: { navigation: any }) => {
                 <View style={{ flexDirection: 'row', alignSelf: 'center' }}>
 
                     <TouchableOpacity 
-                    onPress={()=>navigation.navigate('AgeGender')}
+                    onPress={()=>{
+                        if(Object.values(form).some((value)=> value!=='') && toggleCheckBox ){
+                            auth()
+                            .createUserWithEmailAndPassword(form.email, form.password)
+                            .then(() => {
+                                const key = auth().currentUser?.uid
+                                database()
+                                    .ref('/users/' + key)
+                                    .set({
+                                        email: form.email, uid: auth().currentUser?.uid,name:form.name,phone:form.phone,
+                                        
+                                         
+                                    })
+                                    .then(() => {
+
+                                         ToastAndroid.show('Successful Registration', ToastAndroid.SHORT);
+                                          navigation.navigate('AgeGender') });
+                                console.log('User account created & signed in!');
+                
+                
+                            })
+                            .catch(error => {
+                                if (error.code === 'auth/email-already-in-use') {
+                                    console.log('That email address is already in use!');
+                
+                                }
+                
+                                if (error.code === 'auth/invalid-email') {
+                                    console.log('That email address is invalid!');
+                                }
+                
+                                console.error(error);
+                            });
+                
+
+                        }
+                    }}
                     style={styles.btnLuu}>
                     
                         <Text style={styles.textLogin}>Sign Up</Text>
@@ -71,7 +132,9 @@ const Register = ({ navigation }: { navigation: any }) => {
                        
                     }}>Already a member?</Text>
                     <TouchableOpacity
-                    onPress={() => navigation.navigate('Login')}
+                    onPress={() => {
+                        navigation.navigate('Login');
+                    }}
                     >
                     <Text style={{
                         fontFamily: 'HelveticaNeue',

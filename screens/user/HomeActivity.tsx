@@ -13,7 +13,7 @@ import ToolBarHome from "../../components/UI/ToobarHome";
 import Colors from "../../constants/Colors";
 import { BarChart, LineChart } from "react-native-gifted-charts";
 import { ButtonGroup } from "react-native-elements";
-import { datammHg, barData,lineData,lineData2,lineData3 } from "../../data/datammHg";
+import { datammHg, barData, lineData, lineData2, lineData3 } from "../../data/datammHg";
 const HomeActivity = ({ navigation }: { navigation: any }) => {
 
     const screenWidth = Dimensions.get("window").width;
@@ -24,7 +24,7 @@ const HomeActivity = ({ navigation }: { navigation: any }) => {
     const [selectedIndexCholestrol, setSelectedIndexCholestrol] = useState(0);
     const [selectedIndexVital, setSelectedIndexVital] = useState(0);
 
-   
+
 
 
     return (
@@ -159,7 +159,7 @@ const HomeActivity = ({ navigation }: { navigation: any }) => {
                                         data={barData}
                                         yAxisThickness={0}
                                         xAxisThickness={0}
-                                      
+
                                     />
 
                                 </View>
@@ -192,71 +192,11 @@ const HomeActivity = ({ navigation }: { navigation: any }) => {
 
                 </View>
 
-                <View style={{ alignItems: 'center', padding:8 }}>
 
-                    <Card style={styles.cardDoctor}>
-                        <View style={{ flexDirection: 'row', justifyContent: 'space-between', padding: 8, alignItems: 'center' }}>
-                            <Image style={{}} source={require('../../images/water.png')} />
-                            <Text style={{
-                                color: '#091F3A',
-                                fontSize: 14,
-                                fontStyle: 'normal',
-                                fontWeight: 'normal',
-                                lineHeight: 24,
-                                letterSpacing: 0.005
 
-                            }}>Easy Doctor Blood Pressure</Text>
 
-                            <Image style={{}} source={require('../../images/fi_plus.png')} />
 
-                        </View>
-                    </Card>
-
-                </View>
-                <View style={{ alignItems: 'center', padding:8 }}>
-
-                    <Card style={styles.cardDoctor}>
-                        <View style={{ flexDirection: 'row', justifyContent: 'space-between', padding: 8, alignItems: 'center' }}>
-                            <Image style={{}} source={require('../../images/vacine.png')} />
-                            <Text style={{
-                                color: '#091F3A',
-                                fontSize: 14,
-                                fontStyle: 'normal',
-                                fontWeight: 'normal',
-                                lineHeight: 24,
-                                letterSpacing: 0.005
-
-                            }}>Easy Doctor Blood Glucose</Text>
-
-                            <Image style={{}} source={require('../../images/fi_plus.png')} />
-
-                        </View>
-                    </Card>
-
-                </View>
-                <View style={{ alignItems: 'center',padding:8 }}>
-
-                    <Card style={styles.cardDoctor}>
-                        <View style={{ flexDirection: 'row', justifyContent: 'space-between', padding: 8, alignItems: 'center' }}>
-                            <Image style={{}} source={require('../../images/cholestrol.png')} />
-                            <Text style={{
-                                color: '#091F3A',
-                                fontSize: 14,
-                                fontStyle: 'normal',
-                                fontWeight: 'normal',
-                                lineHeight: 24,
-                                letterSpacing: 0.005
-
-                            }}>Easy Doctor Cholestrol</Text>
-
-                            <Image style={{}} source={require('../../images/fi_plus.png')} />
-
-                        </View>
-                    </Card>
-
-                </View>
-
-                <View style={{ display: inputShown2 == false ? 'flex' : 'none', alignItems: 'center' ,padding:8}}>
+                <View style={{ display: inputShown2 == false ? 'flex' : 'none', alignItems: 'center', padding: 8 }}>
 
                     <Card style={styles.cardDoctor}>
                         <View style={{ flexDirection: 'row', justifyContent: 'space-between', padding: 8, alignItems: 'center' }}>
@@ -292,7 +232,7 @@ const HomeActivity = ({ navigation }: { navigation: any }) => {
                     style={{ display: inputShown2 == true ? 'flex' : 'none' }}
                 >
 
-                    <View style={{ alignItems: 'center', marginTop: 16,  }}>
+                    <View style={{ alignItems: 'center', marginTop: 16, }}>
                         <Card style={styles.cardDoctorDetail}>
                             <View style={{ flexDirection: 'row', padding: 8, alignItems: 'center' }}>
                                 <TouchableOpacity
@@ -344,12 +284,12 @@ const HomeActivity = ({ navigation }: { navigation: any }) => {
                                     textFontSize={3}
                                     noOfSections={3}
                                     maxValue={200}
-                                    
-                                   
+
+
                                 />
 
                             </View>
-                            <View style={{ flexDirection: 'row', justifyContent: 'space-between' ,padding: 8}}>
+                            <View style={{ flexDirection: 'row', justifyContent: 'space-between', padding: 8 }}>
 
                                 <Text style={{
                                     color: '#333333',
@@ -388,23 +328,24 @@ const HomeActivity = ({ navigation }: { navigation: any }) => {
                         </Card>
                     </View>
                 </View>
-                <View style={{ alignItems: 'center', padding:8}}>
+                <View style={{ alignItems: 'center', padding: 8 }}>
 
                     <Card style={styles.cardDoctor}>
                         <View style={{ flexDirection: 'row', justifyContent: 'space-between', padding: 8, alignItems: 'center' }}>
-
                             <Image style={{}} source={require('../../images/spo2.png')} />
+                            <TouchableOpacity
+                                onPress={() => navigation.navigate('SPO2')}
+                            >
+                                <Text style={{
+                                    color: '#091F3A',
+                                    fontSize: 14,
+                                    fontStyle: 'normal',
+                                    fontWeight: 'normal',
+                                    lineHeight: 24,
+                                    letterSpacing: 0.005
 
-                            <Text style={{
-                                color: '#091F3A',
-                                fontSize: 14,
-                                fontStyle: 'normal',
-                                fontWeight: 'normal',
-                                lineHeight: 24,
-                                letterSpacing: 0.005
-
-                            }}>POD SPO2</Text>
-
+                                }}>POD SPO2</Text>
+                            </TouchableOpacity>
                             <Image style={{}} source={require('../../images/fi_plus.png')} />
 
                         </View>
@@ -513,19 +454,19 @@ const styles = StyleSheet.create({
         height: 60,
         alignContent: 'center',
         borderRadius: 12,
-        
-        elevation:8,
-        backgroundColor:'#ffffff'
+
+        elevation: 8,
+        backgroundColor: '#ffffff'
     },
     cardDoctorDetail: {
         width: 350,
         height: 350,
         alignContent: 'center',
         borderRadius: 12,
-        elevation:16,
+        elevation: 16,
         display: 'flex',
-        shadowColor:'#8DC6E4'
-        
+        shadowColor: '#8DC6E4'
+
 
     },
 });

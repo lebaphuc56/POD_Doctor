@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1086728620919",
+    "project_id": "suckhoe-d2982",
+    "storage_bucket": "suckhoe-d2982.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1086728620919:android:1480586d3b4c5ba41d6f72",
+        "android_client_info": {
+          "package_name": "com.pocmobile"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1086728620919-04s8b3rl9fd9du5ick8cjqreb2913lk3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC1xzJbjWkvDIFxwBlnWil0xac5KWfHDGQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1086728620919-04s8b3rl9fd9du5ick8cjqreb2913lk3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

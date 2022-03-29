@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import { Text, View, StyleSheet, TextInput, TouchableOpacity, Image, StatusBar, SafeAreaView, FlatList } from 'react-native';
+import { Text, View, StyleSheet, TextInput, TouchableOpacity, Image, StatusBar, SafeAreaView, ToastAndroid, Alert } from 'react-native';
 import { Avatar } from 'react-native-elements';
 
 import ToolBarHome from '../../components/UI/ToobarHome';
@@ -9,28 +9,117 @@ import { ScrollView } from 'react-native-gesture-handler';
 import DATA from '../../data/ListFemale';
 import Male from '../../data/ListMale';
 import Colors from '../../constants/Colors';
-
+import database, { FirebaseDatabaseTypes } from '@react-native-firebase/database';
+import { idUser } from '../../api/apiService';
+import { widthScreen } from '../utils';
 
 const CartActivity = ({ navigation }: { navigation: any }) => {
+  
     const refRBSheet = useRef();
+    const refUpdateRBSheet = useRef();
+   
 
-    const Item = ({ title }) => (
+    const [users, setUsers] = React.useState([]);
+    const [index, setIndex] = React.useState([]);
+    const { uid: id_User } = idUser();
+
+    React.useEffect(() => {
+        var dataContainer = []
+
+        const userRef = database().ref(`users`);
+        const OnLoadingListener = userRef.on('value', snapshot => {
+
+            if (snapshot.val()) {
+                setUsers(Object.values(snapshot.val())?.filter((v) => v.uid === id_User));
+            }
+
+        });
+        return () => {
+            userRef.off('value', OnLoadingListener);
+            setUsers([]);
+        };
+
+    }, [])
+    React.useEffect(() => {
+        var dataContainer = []
+
+        const userRef = database().ref(`healthIndex`);
+        const OnLoadingListener = userRef.on('value', snapshot => {
+
+            if (snapshot.val()) {
+                setIndex(Object.values(snapshot.val())?.filter((v) => v));
+            }
+
+        });
+        return () => {
+            userRef.off('value', OnLoadingListener);
+            setIndex([]);
+        };
+
+    }, [])
+    console.log('healthIndex', index)
+
+    const DATA = [
+        {
+            id: '1',
+            title: 'Gender',
+            value: users[0]?.information?.sex
+        },
+        {
+            id: '2',
+            title: 'Age',
+            value: users[0]?.information?.old
+        },
+
+        {
+            id: '3',
+            title: 'Phone number',
+            value: users[0]?.phone
+        },
+
+
+        {
+            id: '4',
+            title: 'Email',
+            value: users[0]?.email
+        },
+        {
+            id: '5',
+            title: 'Location',
+            value: users[0]?.information?.location
+        },
+        {
+            id: '6',
+            title: 'Country',
+            value: users[0]?.information.country
+        },
+        {
+            id: '7',
+            title: 'UID',
+            value: users[0]?.uid
+        },
+
+
+
+
+    ];
+
+    console.log('user', users);
+   
+
+    const Item = ({ title, value }) => (
         <View style={styles.item}>
             <Text style={styles.title}>{title}</Text>
-        </View>
-    );
-    const Item2 = ({ title }) => (
-        <View style={styles.item}>
-            <Text style={styles.title2}>{title}</Text>
+            <Text style={styles.title2}>{value}</Text>
+
         </View>
     );
 
-    const renderItem = ({ item }) => (
-        <Item title={item.title} />
+
+    const renderItem = (item, index) => (
+        <Item title={item.title} value={item.value} />
     );
-    const renderItem2 = ({ item }) => (
-        <Item2 title={item.title} />
-    );
+
 
     return (
         <SafeAreaView style={styles.container}>
@@ -55,6 +144,7 @@ const CartActivity = ({ navigation }: { navigation: any }) => {
                 showsVerticalScrollIndicator={false}
             >
                 <View style={{ alignItems: 'center', padding: 8 }}>
+
                     <View>
                         <TouchableOpacity
                             onPress={() => refRBSheet.current.open()}
@@ -77,7 +167,7 @@ const CartActivity = ({ navigation }: { navigation: any }) => {
                                         backgroundColor: '#fff',
                                         borderTopLeftRadius: 16,
                                         borderTopRightRadius: 16,
-                                        
+
 
                                     }
                                 }}
@@ -141,14 +231,15 @@ const CartActivity = ({ navigation }: { navigation: any }) => {
                     <Text style={{
                         color: '#091F3A',
                         fontFamily: 'HelveticaNeue',
-                        fontSize: 24,
+                        fontSize: 34,
                         fontStyle: 'normal',
                         fontWeight: 'bold',
                         lineHeight: 24,
                         padding: 12,
                         opacity: 0.8
-                    }}>John Doe </Text>
+                    }}>{users[0]?.name} </Text>
                 </View>
+
                 <View style={{
                     alignItems: 'center',
                     justifyContent: 'center',
@@ -174,7 +265,7 @@ const CartActivity = ({ navigation }: { navigation: any }) => {
                                     fontWeight: 'bold',
                                     lineHeight: 24,
                                     opacity: 0.8
-                                }}>59{<Text style={{ fontSize: 16 }}>kg</Text>}</Text>
+                                }}>{users[0]?.healthCare?.wight}{<Text style={{ fontSize: 16 }}>kg</Text>}</Text>
                             </View>
 
                             <View style={{ flexDirection: 'column', marginRight: 55 }}>
@@ -196,7 +287,7 @@ const CartActivity = ({ navigation }: { navigation: any }) => {
                                     fontWeight: 'bold',
                                     lineHeight: 24,
                                     opacity: 0.8
-                                }}>180{<Text style={{ fontSize: 16 }}>cm</Text>}</Text>
+                                }}>{users[0]?.healthCare?.height}{<Text style={{ fontSize: 16 }}>cm</Text>}</Text>
                             </View>
 
                             <View style={{ flexDirection: 'column', marginRight: 55 }}>
@@ -209,8 +300,10 @@ const CartActivity = ({ navigation }: { navigation: any }) => {
                                     lineHeight: 24,
                                     letterSpacing: 0.005
                                 }}>BMI</Text>
+
                                 <Text style={{
-                                    color: '#2190CD',
+
+                                    color: '#F8BA56',
                                     fontFamily: 'HelveticaNeue',
                                     fontSize: 24,
                                     marginTop: 8,
@@ -218,12 +311,18 @@ const CartActivity = ({ navigation }: { navigation: any }) => {
                                     fontWeight: 'bold',
                                     lineHeight: 24,
                                     opacity: 0.8
-                                }}>18.1</Text>
+                                }}>{Math.round(users[0]?.healthCare?.wight / (users[0]?.healthCare?.height / 100 * 2))}
+
+                                </Text>
+
+
+                                
                             </View>
                         </View>
 
                     </Card>
                 </View>
+
                 <View style={{ alignItems: 'center', justifyContent: 'center' }}>
                     <Card style={styles.cardResults}>
                         <Text style={{
@@ -245,12 +344,12 @@ const CartActivity = ({ navigation }: { navigation: any }) => {
                                     <Text style={{
                                         color: '#091F3A',
                                         fontFamily: 'HelveticaNeue',
-                                        fontSize: 16,
+                                        fontSize: 20,
                                         fontStyle: 'normal',
-                                        fontWeight: '500',
+                                        fontWeight: 'bold',
                                         lineHeight: 24,
                                         letterSpacing: 0.005
-                                    }}>Uric Acid</Text>
+                                    }}>°C</Text>
                                     <Text style={{
                                         color: '#2190CD',
                                         fontFamily: 'HelveticaNeue',
@@ -267,22 +366,22 @@ const CartActivity = ({ navigation }: { navigation: any }) => {
                                     <Text style={{
                                         color: '#091F3A',
                                         fontFamily: 'HelveticaNeue',
-                                        fontSize: 16,
+                                        fontSize: 20,
                                         fontStyle: 'normal',
-                                        fontWeight: '500',
+                                        fontWeight: 'bold',
                                         lineHeight: 24,
                                         letterSpacing: 0.005
-                                    }}>Cholesterol level</Text>
+                                    }}>SPO2</Text>
                                     <Text style={{
                                         color: '#2190CD',
                                         fontFamily: 'HelveticaNeue',
-                                        fontSize: 18,
+                                        fontSize: 16,
                                         marginTop: 8,
                                         fontStyle: 'normal',
                                         fontWeight: 'bold',
                                         lineHeight: 24,
                                         opacity: 0.8
-                                    }}>189 mg/dL</Text>
+                                    }}>{index[0] + '%'}</Text>
                                 </View>
                             </View>
                         </View>
@@ -294,12 +393,12 @@ const CartActivity = ({ navigation }: { navigation: any }) => {
                                     <Text style={{
                                         color: '#091F3A',
                                         fontFamily: 'HelveticaNeue',
-                                        fontSize: 16,
+                                        fontSize: 18,
                                         fontStyle: 'normal',
-                                        fontWeight: '500',
+                                        fontWeight: 'bold',
                                         lineHeight: 24,
                                         letterSpacing: 0.005
-                                    }}>Glucose level</Text>
+                                    }}>Heart rate</Text>
                                     <Text style={{
                                         color: '#FF5B5B',
                                         fontFamily: 'HelveticaNeue',
@@ -309,7 +408,7 @@ const CartActivity = ({ navigation }: { navigation: any }) => {
                                         fontWeight: 'bold',
                                         lineHeight: 24,
                                         opacity: 0.6
-                                    }}>126 mg/dL</Text>
+                                    }}>{index[1]}</Text>
                                 </View>
 
                                 <View style={{ alignItems: 'center' }}>
@@ -344,17 +443,10 @@ const CartActivity = ({ navigation }: { navigation: any }) => {
                 </View>
                 <View style={{ alignItems: 'center' }}>
                     <Card style={styles.cardInformation}>
-                        <View style={{ flexDirection: 'row', }}>
-                            <FlatList
-                                data={DATA}
-                                renderItem={renderItem}
-                                keyExtractor={item => item.id}
-                            />
-                            <FlatList
-                                data={Male}
-                                renderItem={renderItem2}
-                                keyExtractor={item => item.id}
-                            />
+                        <View style={{}}>
+                            {DATA.map(renderItem)}
+
+
                         </View>
                     </Card>
                 </View>
@@ -362,14 +454,39 @@ const CartActivity = ({ navigation }: { navigation: any }) => {
                 <View style={{ flexDirection: 'column', alignSelf: 'center', marginTop: 20 }}>
 
                     <TouchableOpacity
-                        onPress={() => navigation.push('UpdateContact')}
+                        onPress={() => refUpdateRBSheet.current.open()}
+
                         style={styles.btnLuu2}>
+                        <RBSheet
+                            ref={refUpdateRBSheet}
+                            closeOnDragDown={true}
+
+                            dragFromTopOnly={false}
+                            openDuration={250}
+                            height={500}
+                            customStyles={{
+                                wrapper: {
+                                    backgroundColor: 'rgba(0,0,0,0.3)',
+                                },
+                                draggableIcon: {
+                                    backgroundColor: "#000",
+                                },
+                                container: {
+                                    backgroundColor: '#fff',
+                                    borderTopLeftRadius: 16,
+                                    borderTopRightRadius: 16,
+
+
+                                }
+                            }}
+                        ></RBSheet>
+
                         <View style={{ flexDirection: 'row' }}>
 
                             <Text style={styles.textLogin2}>Update contact</Text>
                         </View>
                     </TouchableOpacity>
-                    
+
                     <TouchableOpacity
                         onPress={() => navigation.navigate('SearchFriend')}
                         style={styles.btnLuu}>
@@ -386,8 +503,8 @@ const CartActivity = ({ navigation }: { navigation: any }) => {
                         height: 88,
                         borderRadius: 8,
                         marginTop: 24,
-                        elevation:8,
-                        backgroundColor:'#ffffff',
+                        elevation: 8,
+                        backgroundColor: '#ffffff',
                         marginBottom: 62
                     }}>
                         <View style={{ padding: 12 }}>
@@ -442,38 +559,39 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     cardBMI: {
-        width: 327,
-        height: 71,
+        width: widthScreen - 80,
         borderRadius: 12,
         alignItems: 'center',
         justifyContent: 'center',
         marginTop: 16,
-        elevation:8,
-        backgroundColor:'#ffffff',
-        
+        elevation: 8,
+        backgroundColor: '#ffffff',
+
     },
     cardInformation: {
-        width: 327,
-        height: 304,
+        width: widthScreen - 80,
         borderRadius: 12,
         borderWidth: 0.5,
         marginTop: 16,
-        elevation:8,
-        backgroundColor:'#ffffff'
+        elevation: 8,
+        backgroundColor: '#ffffff'
 
     },
     cardResults: {
-        width: 327,
-        height: 180,
+        width: widthScreen - 80,
         borderRadius: 12,
         borderWidth: 0.5,
         marginTop: 16,
-        elevation:8,
-        backgroundColor:'#ffffff'
+        elevation: 8,
+        backgroundColor: '#ffffff'
 
     },
     item: {
-        padding: 8,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        marginVertical: 10
+        , paddingHorizontal: 10
     },
     title: {
         color: '#091F3A',
@@ -484,7 +602,6 @@ const styles = StyleSheet.create({
         lineHeight: 18,
         letterSpacing: 0.005,
         opacity: 0.8,
-        marginLeft: 31,
     },
     title2: {
         color: '#091F3A',

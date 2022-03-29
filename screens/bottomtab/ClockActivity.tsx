@@ -1,15 +1,51 @@
-import React, { useEffect } from 'react';
-import { Text, View, StyleSheet, TextInput, TouchableOpacity, Image, ColorValue, StatusBar, SafeAreaView } from 'react-native';
-import { Avatar } from 'react-native-elements';
-import { Card } from 'react-native-paper';
-import SplashScreen from 'react-native-splash-screen'
+import React, { useEffect, useState } from 'react';
+import { Text, View, StyleSheet, TextInput, TouchableOpacity,
+     Image, ColorValue, StatusBar, SafeAreaView,ActivityIndicator  } from 'react-native';
+
+import { FlatList } from 'react-native-gesture-handler';
 import ToolBarHome from "../../components/UI/ToobarHome";
 import Colors from '../../constants/Colors';
 
 
 const ClockActivity = ({ navigation }: { navigation: any }) => {
 
+    const [data, setData] = useState([]);
+    const [isLoading, setisLoading] = useState(true);
 
+    useEffect(() => {
+        getListUsers();
+        return () => {
+
+        }
+    }, [])
+
+    const getListUsers = () => {
+        const apiURL = 'https://jsonplaceholder.typicode.com/photos';
+        fetch(apiURL)
+            .then((res) => res.json())
+            .then((resJson) => {
+                setData(resJson)
+            }).catch((error) => {
+                console.log('Error :', error);
+            }).finally(() => setisLoading(false))
+
+    }
+
+    const renderItem = ({ item, index }) => {
+        return (
+            <View style={styles.item}>
+                <Image
+                    style={styles.image}
+                    source= {{uri:item.url}}
+                    resizeMode='contain'
+                />
+                <View style={styles.wrapText}>
+                    <Text>{item.title}</Text>
+
+                </View>
+            </View>
+        )
+    }
 
     return (
         <SafeAreaView style={styles.container}>
@@ -29,132 +65,24 @@ const ClockActivity = ({ navigation }: { navigation: any }) => {
                     </TouchableOpacity>
                 </View>
             </ToolBarHome>
-            <View>
-                <Text style={{
-                    color: Colors.blue,
-                    fontSize: 16,
-                    lineHeight: 24,
-                    fontStyle: 'normal',
-                    fontWeight: '700',
-                    padding: 18,
-                    backgroundColor: Colors.white
-                }}>Friend requests</Text>
+            <View style={{padding:8}}>
+                <TouchableOpacity
+                onPress={() => navigation.navigate('Test')}
+                >
+                <Text style={{fontSize:30,color:Colors.black}}>List Photo API</Text>
+                </TouchableOpacity>
             </View>
 
-            <View style={{ flexDirection: 'row',padding:12,backgroundColor:'#EAF5FA' }}>
-                <Avatar
-                    rounded
-                    size={70}
-                    source={require('../../images/zhang.png')}
+            {isLoading ? <ActivityIndicator /> : (
+                <FlatList
+                    style={styles.list}
+                    data={data}
+                    renderItem={renderItem}
+                    keyExtractor={item => `key-${item.id}`}
+
                 />
-                <View style={{ flexDirection: 'column',padding:12 }}>
-                    <Text>{<Text style={{
-                        color: '#091F3A',
-                        fontSize: 14,
-                        lineHeight: 18,
-                        fontStyle: 'normal',
-                        fontWeight: 'bold',
-                        opacity: 0.4,
 
-                    }}>Dr. Ming</Text>} sent you a friend request</Text>
-                    <Text>
-                    10 hours ago
-                    </Text>
-
-                    <View style={{flexDirection:'row', marginTop: 25}}>
-                        <View style={{ alignSelf: 'center',}}>
-
-                            <TouchableOpacity
-                                onPress={() => navigation.navigate('SearchFriend')}
-                                style={styles.btnLuu}>
-                                <View style={{ flexDirection: 'row' }}>
-                                   
-                                    <Text style={styles.textLogin}>Delete</Text>
-                                </View>
-                            </TouchableOpacity>
-
-                        </View>
-
-                        <View style={{ alignSelf: 'center', }}>
-
-                            <TouchableOpacity
-                                onPress={() => navigation.navigate('SearchFriend')}
-                                style={styles.btnLuu2}>
-                                <View style={{ flexDirection: 'row' }}>
-                                   
-                                    <Text style={styles.textLogin2}>Confirm</Text>
-                                </View>
-                            </TouchableOpacity>
-
-                        </View>
-                    </View>
-
-                </View>
-            </View>
-
-            <View style={{ flexDirection: 'row',padding:12,backgroundColor:'#fff' }}>
-                <Avatar
-                    rounded
-                    size={70}
-                    source={require('../../images/zuy.png')}
-                />
-                <View style={{ flexDirection: 'column',padding:12 }}>
-                    <Text>{<Text style={{
-                        color: '#091F3A',
-                        fontSize: 14,
-                        lineHeight: 18,
-                        fontStyle: 'normal',
-                        fontWeight: 'bold',
-                        opacity: 0.4,
-
-                    }}>Dr. Ming</Text>} sent you a friend request</Text>
-                    <Text>
-                    10 hours ago
-                    </Text>
-
-                    <View style={{flexDirection:'row', marginTop: 25}}>
-                        <View style={{ alignSelf: 'center',}}>
-
-                            <TouchableOpacity
-                                onPress={() => navigation.navigate('SearchFriend')}
-                                style={styles.btnLuu}>
-                                <View style={{ flexDirection: 'row' }}>
-                                   
-                                    <Text style={styles.textLogin}>Delete</Text>
-                                </View>
-                            </TouchableOpacity>
-
-                        </View>
-
-                        <View style={{ alignSelf: 'center', }}>
-
-                            <TouchableOpacity
-                                onPress={() => navigation.navigate('SearchFriend')}
-                                style={styles.btnLuu2}>
-                                <View style={{ flexDirection: 'row' }}>
-                                   
-                                    <Text style={styles.textLogin2}>Confirm</Text>
-                                </View>
-                            </TouchableOpacity>
-
-                        </View>
-                    </View>
-
-                </View>
-            </View>
-            <View>
-                <Text style={{
-                    color: Colors.blue,
-                    fontSize: 16,
-                    lineHeight: 24,
-                    fontStyle: 'normal',
-                    fontWeight: '700',
-                    padding: 18,
-                    backgroundColor: Colors.white
-                }}>Notifications</Text>
-            </View>
-
-
+            )}
 
         </SafeAreaView>
     )
@@ -164,6 +92,32 @@ const styles = StyleSheet.create({
         flex: 1,
 
     },
+    list: {
+        flex: 1,
+        padding: 8,
+        
+
+    },
+    item: {
+        flexDirection: 'row',
+        marginTop: 8,
+        padding: 5,
+        shadowColor: 'red',
+        shadowRadius: 8,
+        shadowOpacity: 0.5,
+
+    },
+    image: {
+        width: 100,
+        height: 150,
+    },
+    wrapText:{
+        flex:1,
+        marginLeft:16,
+        justifyContent:'center'
+
+    },
+
     HeadContainer: {
         width: '100%',
         flexDirection: 'row',
@@ -178,8 +132,8 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         width: 103,
-        borderColor:Colors.blue,
-        borderWidth:1
+        borderColor: Colors.blue,
+        borderWidth: 1
 
     },
     textLogin: {
@@ -197,7 +151,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         width: 103,
-        marginLeft:12
+        marginLeft: 12
 
     },
     textLogin2: {
